@@ -29,8 +29,8 @@ jobs:
               uses: AkhileshNS/heroku-deploy@v3.12.12
               with:
                   heroku_api_key: ${{secrets.QA_HEROKU_API_KEY}}
-                  heroku_app_name: 'heroku-app-name-here'
-                  heroku_email: 'email-here'
+                  heroku_app_name: ''
+                  heroku_email: ''
                   procfile: 'worker: yarn qa'
               env:
                   HD_DISCORD_BOT_TOKEN: ${{secrets.QA_DISCORD_TOKEN}}
@@ -40,5 +40,4 @@ jobs:
                   HD_MONGODB_USERNAME: ${{secrets.QA_MONGODB_USERNAME}}
                   HD_MONGODB_PASS: ${{secrets.QA_MONGODB_PASS}}
                   HD_MONGODB_CLUSTER: ${{secrets.QA_MONGODB_CLUSTER}}
-                  HD_NOTION_TOKEN: ${{secrets.QA_NOTION_TOKEN}}
                   HD_LOGDNA_TOKEN: ${{secrets.QA_LOGDNA_TOKEN}}

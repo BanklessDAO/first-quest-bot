@@ -3,6 +3,7 @@ import constants from '../service/constants/constants';
 import { DiscordEvent } from '../types/discord/DiscordEvent';
 import Log, { LogUtils } from '../utils/Log';
 import MongoDbUtils from '../utils/MongoDbUtils';
+import FirstQuestRescueService from '../service/first-quest/FirstQuestRescueService';
 
 export default class implements DiscordEvent {
 	name = 'ready';
@@ -16,7 +17,8 @@ export default class implements DiscordEvent {
 			client.guilds.cache.forEach((guild: Guild) => {
 				Log.info(`Bot is active for: ${guild.id}, ${guild.name}`);
 			});
-			await MongoDbUtils.connect(constants.DB_NAME_DEGEN);
+			await MongoDbUtils.connect(constants.DB_NAME);
+			await FirstQuestRescueService().catch(Log.error);
 			
 			Log.info('Bot is ready!');
 		} catch (e) {

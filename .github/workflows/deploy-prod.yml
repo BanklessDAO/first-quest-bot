@@ -2,7 +2,7 @@ name: Deploy to Production Environment
 on:
   push:
     branches:
-      - 'DEGEN'
+      - 'main'
 jobs:
   deploy-prod:
     environment:
@@ -26,8 +26,8 @@ jobs:
         uses: AkhileshNS/heroku-deploy@v3.12.12
         with:
           heroku_api_key: ${{secrets.PROD_HEROKU_API_KEY}}
-          heroku_app_name: 'heroku-app-name-here'
-          heroku_email: 'emaul-here'
+          heroku_app_name: 'first-quest-bot'
+          heroku_email: 'test@email.com'
           procfile: 'worker: yarn prod'
         env:
           HD_DISCORD_BOT_TOKEN: ${{secrets.PROD_DISCORD_TOKEN}}
@@ -37,5 +37,4 @@ jobs:
           HD_MONGODB_USERNAME: ${{secrets.PROD_MONGODB_USERNAME}}
           HD_MONGODB_PASS: ${{secrets.PROD_MONGODB_PASS}}
           HD_MONGODB_CLUSTER: ${{secrets.PROD_MONGODB_CLUSTER}}
-          HD_NOTION_TOKEN: ${{secrets.PROD_NOTION_TOKEN}}
           HD_LOGDNA_TOKEN: ${{secrets.PROD_LOGDNA_TOKEN}}

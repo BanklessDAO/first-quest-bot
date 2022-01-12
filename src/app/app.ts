@@ -1,12 +1,8 @@
-import './utils/tracer';
 import { SlashCreator, GatewayServer, SlashCommand, CommandContext } from 'slash-create';
 import Discord, { Client, ClientOptions, Intents, WSEventType } from 'discord.js';
 import path from 'path';
 import fs from 'fs';
 import Log, { LogUtils } from './utils/Log';
-
-// initialize logger
-new Log();
 
 const client: Client = initializeClient();
 initializeEvents();
