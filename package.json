@@ -64,5 +64,8 @@
         "yarn": "1.x",
         "node": "16.x"
     },
-    "engineStrict": true
+    "engineStrict": true,
+    "directories": {
+        "doc": "docs"
+    }
 }
