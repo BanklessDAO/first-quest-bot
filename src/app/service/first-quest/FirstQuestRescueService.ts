@@ -3,7 +3,7 @@ import { checkPOAPExpiration } from './FirstQuestPOAP';
 import cron from 'cron';
 import Log from '../../utils/Log';
 import channelIds from '../constants/channelIds';
-import { TextBasedChannel } from 'discord.js';
+import { TextBasedChannels } from 'discord.js';
 import client from '../../app';
 
 const dateTimeString = () => {
@@ -31,7 +31,7 @@ export default async (): Promise<any> => {
 	job2.start();
 
 	const job3 = new cron.CronJob('0 0/30 * * * *', async function() {
-		const infoChannel = await client.channels.fetch(channelIds.captchaVerification) as TextBasedChannel;
+		const infoChannel = await client.channels.fetch(channelIds.captchaVerification) as TextBasedChannels;
 		await infoChannel.send({ content: 'to start first-quest manually, make sure DMs are enabled and run `/first-quest start` command' });
 		Log.info(`First Quest: /first-quest start reminder cron job executed on ${dateTimeString()}`);
 	}, null, true, 'America/Los_Angeles');

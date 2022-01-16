@@ -1,4 +1,4 @@
-import { DMChannel, GuildMember, TextBasedChannel, TextChannel } from 'discord.js';
+import { DMChannel, GuildMember, TextBasedChannels, TextChannel } from 'discord.js';
 import constants from '../constants/constants';
 import fqConstants from '../constants/firstQuest';
 import Log, { LogUtils } from '../../utils/Log';
@@ -9,7 +9,7 @@ import channelIds from '../constants/channelIds';
 import { getPOAPLink } from './FirstQuestPOAP';
 import roleIds from '../constants/roleIds';
 
-export const sendFqMessage = async (dmChan:TextBasedChannel | string, member: GuildMember): Promise<void> => {
+export const sendFqMessage = async (dmChan: TextBasedChannels | string, member: GuildMember): Promise<void> => {
 
 	try {
 		await member.roles.remove(roleIds.firstQuestWelcome);
@@ -130,7 +130,7 @@ const getMessageContentFromDb = async (): Promise<void> => {
 	return data[0].messages;
 };
 
-const getDMChannel = async (member: GuildMember, dmChan: TextBasedChannel | string): Promise<DMChannel> => {
+const getDMChannel = async (member: GuildMember, dmChan: TextBasedChannels | string): Promise<DMChannel> => {
 	if (dmChan === 'undefined') {
 		return await member.user.createDM();
 

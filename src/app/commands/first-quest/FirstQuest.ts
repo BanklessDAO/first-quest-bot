@@ -63,7 +63,7 @@ export default class FirstQuest extends SlashCommand {
 			defaultPermission: true,
 		});
 	}
-	
+
 	async run(ctx: CommandContext): Promise<any> {
 		LogUtils.logCommandStart(ctx);
 		if (ctx.user.bot) return;
