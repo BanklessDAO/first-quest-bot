@@ -3,7 +3,7 @@ import { Db, ObjectID } from 'mongodb';
 import dbInstance from '../../utils/MongoDbUtils';
 import constants from '../constants/constants';
 import fqConstants from '../constants/firstQuest';
-import Log, {LogUtils} from '../../utils/Log';
+import Log, { LogUtils } from '../../utils/Log';
 import channelIds from '../constants/channelIds';
 import roleIds from '../constants/roleIds';
 import ServiceUtils from '../../utils/ServiceUtils';
