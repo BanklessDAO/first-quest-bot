@@ -1,7 +1,7 @@
 {
-    "name": "degen-bankless-dao",
-    "version": "1.2.4",
-    "description": "Administrative and Utilitarian bot for the Bankless Discord Server.",
+    "name": "first-quest-bot",
+    "version": "1.0.0",
+    "description": "description here",
     "main": "app.js",
     "private": true,
     "scripts": {
@@ -65,13 +65,14 @@
         "jest": "^27.0.6",
         "ts-jest": "^27.0.5",
         "ts-loader": "^9.2.3",
-        "typescript": "4.4.3",
-        "webpack": "^5.44.0",
-        "webpack-cli": "^4.7.2"
+        "typescript": "~4.4.3"
     },
     "engines": {
         "yarn": "1.x",
         "node": "16.x"
     },
-    "engineStrict": true
+    "engineStrict": true,
+    "directories": {
+        "doc": "docs"
+    }
 }

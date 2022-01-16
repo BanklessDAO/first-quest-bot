@@ -13,7 +13,7 @@ export default class implements DiscordEvent {
 	async execute(client: Client): Promise<any> {
 		try {
 			Log.info('Starting up the bot...');
-
+			
 			client.user.setActivity(process.env.DISCORD_BOT_ACTIVITY);
 			client.guilds.cache.forEach((guild: Guild) => {
 				Log.info(`Bot is active for: ${guild.id}, ${guild.name}`);
@@ -21,7 +21,7 @@ export default class implements DiscordEvent {
 			await MongoDbUtils.connect(constants.DB_NAME);
 			await FirstQuestUtils.fqInit().catch(Log.error);
 			await FirstQuestRescueService().catch(Log.error);
-
+			
 			Log.info('Bot is ready!');
 		} catch (e) {
 			LogUtils.logError('Error processing event ready', e);
