@@ -1,7 +1,7 @@
 {
-    "name": "degen-bankless-dao",
-    "version": "1.2.4",
-    "description": "Administrative and Utilitarian bot for the Bankless Discord Server.",
+    "name": "first-quest-bot",
+    "version": "1.0.0",
+    "description": "First Quest and CAPTCHA verification for Bankless DAO.",
     "main": "app.js",
     "private": true,
     "scripts": {
@@ -18,7 +18,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/BanklessDAO/degen-bankless-dao"
+        "url": "git+https://github.com/BanklessDAO/first-quest-bot"
     },
     "keywords": [
         "bankless",
@@ -27,11 +27,11 @@
         "crypto"
     ],
     "author": "BANKLESS DAO",
-    "license": "BUSL-1.1",
+    "license": "MIT",
     "bugs": {
-        "url": "https://github.com/BanklessDAO/degen-bankless-dao/issues"
+        "url": "https://github.com/BanklessDAO/first-quest-bot/issues"
     },
-    "homepage": "https://github.com/BanklessDAO/degen-bankless-dao/main/README.md",
+    "homepage": "https://github.com/BanklessDAO/first-quest-bot/main/README.md",
     "dependencies": {
         "@logdna/logger": "^2.4.1",
         "@notionhq/client": "0.2.0",

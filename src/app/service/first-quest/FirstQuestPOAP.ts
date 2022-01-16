@@ -20,7 +20,13 @@ import channelIds from '../constants/channelIds';
 import client from '../../app';
 
 export default async (guildMember: GuildMember, ctx: CommandContext): Promise<any> => {
-	ServiceUtils.validateLevel2AboveMembers(guildMember);
+	try {
+		ServiceUtils.validateLevel2AboveMembers(guildMember);
+	} catch (e) {
+		LogUtils.logError('L2 validation failed', e);
+		ctx?.send(`Hi, ${ctx.user.mention}! You do not have permission to use this command.`);
+		return;
+	}
 
 	await ctx?.send(`Hi, ${ctx.user.mention}! I sent you a DM with more information.`);
 
