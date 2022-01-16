@@ -63,7 +63,7 @@ export default class FirstQuest extends SlashCommand {
 			defaultPermission: true,
 		});
 	}
-	
+
 	async run(ctx: CommandContext): Promise<any> {
 		LogUtils.logCommandStart(ctx);
 		if (ctx.user.bot) return;
@@ -89,7 +89,8 @@ export default class FirstQuest extends SlashCommand {
 				return ctx.send(`${ctx.user.mention} Please try again.`);
 			}
 		} catch {
-			this.handleCommandError(ctx, command);
+			console.log('error happened');
+			// this.handleCommandError(ctx, command);
 		}
 	}
 

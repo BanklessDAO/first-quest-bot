@@ -4,7 +4,7 @@ import {
 	MessageAttachment,
 	NewsChannel,
 	PartialDMChannel,
-	TextBasedChannel,
+	TextBasedChannels,
 	TextChannel,
 	ThreadChannel,
 } from 'discord.js';
@@ -45,7 +45,7 @@ export default async (guildMember: GuildMember, ctx: CommandContext): Promise<an
 			await writePOAPLinksToDb(linkList, timestamp);
 			await guildMember.send({ content: 'POAP claim links successfully updated!' });
 			Log.debug('POAPs successfully refilled for first quest');
-			
+
 			return;
 		} else {
 			await guildMember.send({ content: 'links.txt file seems to be empty, please try again.' });
@@ -66,7 +66,7 @@ export default async (guildMember: GuildMember, ctx: CommandContext): Promise<an
 		} else {
 			await guildMember.send({ content: 'links.txt file seems to be empty, please try again.' });
 			Log.warn('links.txt seems to be empty for first quest replace');
-			
+
 			return;
 		}
 	}
@@ -165,7 +165,7 @@ export const getPOAPLink = async (guildMember: GuildMember):Promise<any> => {
 		Log.warn('running low on POAPs, less than 300 left');
 		const channels = await guildMember.guild.channels.fetch();
 
-		const fqProjectChannel = channels.get(channelIds.firstQuestProject) as TextBasedChannel;
+		const fqProjectChannel = channels.get(channelIds.firstQuestProject) as TextBasedChannels;
 
 		await fqProjectChannel.send({ content:
 				`<@&${ roleIds.firstQuestProject }> : We're running short on POAPs, ` +
@@ -175,7 +175,7 @@ export const getPOAPLink = async (guildMember: GuildMember):Promise<any> => {
 		Log.warn('running low on POAPs, less than 150 left');
 		const channels = await guildMember.guild.channels.fetch();
 
-		const fqProjectChannel = channels.get(channelIds.firstQuestProject) as TextBasedChannel;
+		const fqProjectChannel = channels.get(channelIds.firstQuestProject) as TextBasedChannels;
 
 		await fqProjectChannel.send({ content:
 				`<@&${ roleIds.firstQuestProject }> : **Last warning**, running really short on ` +
@@ -185,7 +185,7 @@ export const getPOAPLink = async (guildMember: GuildMember):Promise<any> => {
 		Log.warn('ran out of POAPs!');
 		const channels = await guildMember.guild.channels.fetch();
 
-		const fqProjectChannel = channels.get(channelIds.firstQuestProject) as TextBasedChannel;
+		const fqProjectChannel = channels.get(channelIds.firstQuestProject) as TextBasedChannels;
 
 		await fqProjectChannel.send({ content:
 				`<@&${roleIds.firstQuestProject}> : We're out of POAPs. ` +
@@ -216,7 +216,7 @@ export const getPOAPLink = async (guildMember: GuildMember):Promise<any> => {
 	const updateDoc = { $set: { claimed: guildMember.user.id } };
 
 	await firstQuestPOAPs.updateOne(filter3, updateDoc, options);
-	
+
 	await guildMember.send({ content: `Here is your POAP: ${theOne.link}` });
 	Log.debug('POAP given to first quest champion');
 	return;
@@ -316,7 +316,7 @@ const getFqProjectChannel = async (): Promise<null | PartialDMChannel | DMChanne
 		const channels = await guild.channels.fetch();
 
 		try {
-			return await channels.get(channelIds.firstQuestProject) as TextBasedChannel;
+			return await channels.get(channelIds.firstQuestProject) as TextBasedChannels;
 
 		} catch {
 			Log.debug('first quest project channel not found');

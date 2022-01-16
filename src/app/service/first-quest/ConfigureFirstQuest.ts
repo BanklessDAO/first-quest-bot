@@ -1,4 +1,4 @@
-import { DMChannel, GuildMember, TextBasedChannel } from 'discord.js';
+import { DMChannel, GuildMember, TextBasedChannels } from 'discord.js';
 import { Db, ObjectID } from 'mongodb';
 import dbInstance from '../../utils/MongoDbUtils';
 import constants from '../constants/constants';
@@ -208,7 +208,7 @@ const updateDatabase = async (member, content, key, origMessages) => {
 
 	const channels = await member.guild.channels.fetch();
 
-	const fqProjectChannel = channels.get(channelIds.firstQuestProject) as TextBasedChannel;
+	const fqProjectChannel = channels.get(channelIds.firstQuestProject) as TextBasedChannels;
 
 	// This has to be split up into separate messages to not exceed 2000 character limit of discord
 
