@@ -89,8 +89,7 @@ export default class FirstQuest extends SlashCommand {
 				return ctx.send(`${ctx.user.mention} Please try again.`);
 			}
 		} catch {
-			console.log('error happened');
-			// this.handleCommandError(ctx, command);
+			this.handleCommandError(ctx, command);
 		}
 	}
 
