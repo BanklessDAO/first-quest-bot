@@ -3,14 +3,21 @@ import { Db, ObjectID } from 'mongodb';
 import dbInstance from '../../utils/MongoDbUtils';
 import constants from '../constants/constants';
 import fqConstants from '../constants/firstQuest';
-import Log from '../../utils/Log';
+import Log, { LogUtils } from '../../utils/Log';
 import channelIds from '../constants/channelIds';
 import roleIds from '../constants/roleIds';
 import ServiceUtils from '../../utils/ServiceUtils';
 import { CommandContext } from 'slash-create';
 
 export default async (member: GuildMember, ctx: CommandContext): Promise<any> => {
-	ServiceUtils.validateLevel2AboveMembers(member);
+	try {
+		ServiceUtils.validateLevel2AboveMembers(member);
+	} catch (e) {
+		LogUtils.logError('L2 validation failed', e);
+		ctx?.send(`Hi, ${ctx.user.mention}! You do not have permission to use this command.`);
+		return;
+	}
+
 	await ctx?.send(`Hi, ${ctx.user.mention}! I sent you a DM with more information.`);
 
 	const dmChannel = await member.user.createDM();
