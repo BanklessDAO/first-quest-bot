@@ -17,7 +17,7 @@ export default class FirstQuest extends SlashCommand {
 		super(creator, {
 			name: 'first-quest',
 			description: 'First Quest commands',
-			guildIDs: [discordServerIds.banklessDAO, discordServerIds.discordBotGarage],
+			guildIDs: [discordServerIds.banklessDAO, discordServerIds.firstQuestBotTest],
 			options: [
 				{
 					name: 'start',
