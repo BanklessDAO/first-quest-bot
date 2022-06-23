@@ -67,9 +67,9 @@ export default class FirstQuest extends SlashCommand {
 	async run(ctx: CommandContext): Promise<any> {
 		LogUtils.logCommandStart(ctx);
 		if (ctx.user.bot) return;
-		const { guildMember } = await ServiceUtils.getGuildAndMember(ctx);
 		let command: Promise<any>;
 		try {
+			const { guildMember } = await ServiceUtils.getGuildAndMember(ctx);
 			switch (ctx.subcommands[0]) {
 			case 'start':
 				await ctx?.send(`Hi, ${ctx.user.mention}! First Quest was launched, please make sure DMs are active.`);
@@ -82,9 +82,9 @@ export default class FirstQuest extends SlashCommand {
 			case 'config':
 				command = ConfigureFirstQuest(guildMember, ctx);
 				break;
-			case 'poap-refill':
-				command = FirstQuestPOAP(guildMember, ctx);
-				break;
+			// case 'poap-refill':
+			// 	command = FirstQuestPOAP(guildMember, ctx);
+			// 	break;
 			default:
 				return ctx.send(`${ctx.user.mention} Please try again.`);
 			}
