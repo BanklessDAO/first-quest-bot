@@ -12,7 +12,7 @@ import roleIds from '../constants/roleIds';
 export const sendFqMessage = async (dmChan: TextBasedChannels | string, member: GuildMember): Promise<void> => {
 
 	try {
-		member.roles.remove(roleIds.firstQuestWelcome)
+		//await member.roles.remove(roleIds.firstQuestWelcome)
 	} catch (e) {
 		Log.debug('failed to remove role');
 		Log.error(e);
