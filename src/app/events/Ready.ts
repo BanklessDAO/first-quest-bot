@@ -21,7 +21,7 @@ export default class implements DiscordEvent {
 			await MongoDbUtils.connect(constants.DB_NAME);
 			Log.info(`connected to MongoDB ${constants.DB_NAME}`)
 			await FirstQuestUtils.fqInit().catch(Log.error);
-			await FirstQuestRescueService().catch(Log.error);
+			// await FirstQuestRescueService().catch(Log.error);
 			
 			Log.info('Bot is ready!');
 		} catch (e) {
