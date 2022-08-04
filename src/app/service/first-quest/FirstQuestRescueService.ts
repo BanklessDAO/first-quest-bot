@@ -22,19 +22,19 @@ export default async (): Promise<any> => {
 		await fqRescueCall();
 		Log.info(`First Quest: fqRescueCall() cron job executed on ${dateTimeString()}`);
 	}, null, true, 'America/Los_Angeles');
-	job.start();
+	// job.start();
 
 	const job2 = new cron.CronJob('0 0 0/6 * * *', async function() {
 		await checkPOAPExpiration();
 		Log.info(`First Quest: checkPOAPExpiration() cron job executed on ${dateTimeString()}`);
 	}, null, true, 'America/Los_Angeles');
-	job2.start();
+	// job2.start();
 
 	const job3 = new cron.CronJob('0 0/30 * * * *', async function() {
 		const infoChannel = await client.channels.fetch(channelIds.captchaVerification) as TextBasedChannels;
 		await infoChannel.send({ content: 'to start first-quest manually, make sure DMs are enabled and run `/first-quest start` command' });
 		Log.info(`First Quest: /first-quest start reminder cron job executed on ${dateTimeString()}`);
 	}, null, true, 'America/Los_Angeles');
-	job3.start();
+	// job3.start();
 };
 
