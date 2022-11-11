@@ -58,7 +58,7 @@ const runSuccessAndTimeout = (guildMember: GuildMember, captcha: any, isKickOnFa
 	if (!isKickOnFailureSet) {
 		captcha.on('timeout', async () => {
 			Log.debug(`captcha timeout for ${guildMember.user.tag}`);
-			await guildMember.kick('captcha timeout').catch(Log.error);
+			//await guildMember.kick('captcha timeout').catch(Log.error);
 		});
 	}
 };
