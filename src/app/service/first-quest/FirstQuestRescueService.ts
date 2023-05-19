@@ -1,3 +1,4 @@
+/*
 import { fqRescueCall } from './LaunchFirstQuest';
 import { checkPOAPExpiration } from './FirstQuestPOAP';
 import cron from 'cron';
@@ -37,4 +38,4 @@ export default async (): Promise<any> => {
 	}, null, true, 'America/Los_Angeles');
 	// job3.start();
 };
-
+*/

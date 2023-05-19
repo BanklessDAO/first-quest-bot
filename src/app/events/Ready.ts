@@ -3,7 +3,7 @@ import constants from '../service/constants/constants';
 import { DiscordEvent } from '../types/discord/DiscordEvent';
 import Log, { LogUtils } from '../utils/Log';
 import MongoDbUtils from '../utils/MongoDbUtils';
-import FirstQuestRescueService from '../service/first-quest/FirstQuestRescueService';
+// import FirstQuestRescueService from '../service/first-quest/FirstQuestRescueService';
 import FirstQuestUtils from '../utils/FirstQuestUtils';
 
 export default class implements DiscordEvent {

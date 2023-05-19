@@ -35,6 +35,7 @@ const runSuccessAndTimeout = async (guildMember: GuildMember, captcha: any, isKi
 	}
 };
 
+/*
 const getCaptchaOptions = (guildMember: GuildMember, kickOnFailure: boolean) => {
 	return {
 		guildID: guildMember.guild.id,
@@ -53,5 +54,6 @@ const getCaptchaOptions = (guildMember: GuildMember, kickOnFailure: boolean) => 
 		}),
 	};
 };
+*/
 
 export default StartFirstQuestFlow;
