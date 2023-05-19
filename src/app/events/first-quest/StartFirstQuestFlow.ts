@@ -3,7 +3,7 @@ import {
 	GuildMember,
 	Message,
 	// MessageEmbed,
-	TextChannel
+	TextChannel,
 } from 'discord.js';
 import Log from '../../utils/Log';
 import { addNewUserToDb, sendFqMessage } from '../../service/first-quest/LaunchFirstQuest';
