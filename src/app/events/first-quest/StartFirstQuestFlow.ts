@@ -1,5 +1,4 @@
 import channelIds from '../../service/constants/channelIds';
-import client from '../../app';
 import { GuildMember, Message, MessageEmbed, TextChannel } from 'discord.js';
 import Log from '../../utils/Log';
 import { addNewUserToDb, sendFqMessage } from '../../service/first-quest/LaunchFirstQuest';
@@ -31,7 +30,7 @@ const runSuccessAndTimeout = async (guildMember: GuildMember, captcha: any, isKi
 	if (!isKickOnFailureSet) {
 		captcha.on('timeout', async () => {
 			Log.debug(`captcha timeout for ${guildMember.user.tag}`);
-			//await guildMember.kick('captcha timeout').catch(Log.error);
+			// await guildMember.kick('captcha timeout').catch(Log.error);
 		});
 	}
 };

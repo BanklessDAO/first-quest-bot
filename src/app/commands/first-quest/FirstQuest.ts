@@ -8,7 +8,6 @@ import ServiceUtils from '../../utils/ServiceUtils';
 import ConfigureFirstQuest from '../../service/first-quest/ConfigureFirstQuest';
 import ValidationError from '../../errors/ValidationError';
 import discordServerIds from '../../service/constants/discordServerIds';
-import FirstQuestPOAP from '../../service/first-quest/FirstQuestPOAP';
 import { addNewUserToDb, sendFqMessage } from '../../service/first-quest/LaunchFirstQuest';
 import Log, { LogUtils } from '../../utils/Log';
 
@@ -17,7 +16,7 @@ export default class FirstQuest extends SlashCommand {
 		super(creator, {
 			name: 'first-quest',
 			description: 'First Quest commands',
-			guildIDs: [discordServerIds.banklessDAO, discordServerIds.firstQuestBotTest],
+			guildIDs: [discordServerIds.banklessDAO, discordServerIds.discordBotGarage],
 			options: [
 				{
 					name: 'start',
@@ -82,9 +81,6 @@ export default class FirstQuest extends SlashCommand {
 			case 'config':
 				command = ConfigureFirstQuest(guildMember, ctx);
 				break;
-			// case 'poap-refill':
-			// 	command = FirstQuestPOAP(guildMember, ctx);
-			// 	break;
 			default:
 				return ctx.send(`${ctx.user.mention} Please try again.`);
 			}
