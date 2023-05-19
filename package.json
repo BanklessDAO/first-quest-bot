@@ -1,7 +1,7 @@
 {
     "name": "first-quest-bot",
-    "version": "1.0.0",
-    "description": "First Quest and CAPTCHA verification for Bankless DAO.",
+    "version": "2.0.0",
+    "description": "New member onboarding for Bankless DAO.",
     "main": "app.js",
     "private": true,
     "scripts": {
