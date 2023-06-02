@@ -6,15 +6,16 @@ import dbInstance from '../../utils/MongoDbUtils';
 import { Db } from 'mongodb';
 import client from '../../app';
 import channelIds from '../constants/channelIds';
-import { getPOAPLink } from './FirstQuestPOAP';
-import roleIds from '../constants/roleIds';
+// import { getPOAPLink } from './FirstQuestPOAP';
+// import roleIds from '../constants/roleIds';
 
 export const sendFqMessage = async (dmChan: TextBasedChannels | string, member: GuildMember): Promise<void> => {
 
 	try {
-		await member.roles.remove(roleIds.firstQuestWelcome);
-	} catch {
+		// await member.roles.remove(roleIds.firstQuestWelcome)
+	} catch (e) {
 		Log.debug('failed to remove role');
+		Log.error(e);
 	}
 
 	const dmChannel: DMChannel = await getDMChannel(member, dmChan);
@@ -47,7 +48,7 @@ export const sendFqMessage = async (dmChan: TextBasedChannels | string, member: 
 				} else {
 					await dmChannel.send({ content: fqMessageContent[getFqMessage(fqConstants.FIRST_QUEST_STEPS.first_quest_complete).message_id].replace(/\\n/g, '\n') });
 
-					await getPOAPLink(member);
+					// await getPOAPLink(member);
 				}
 			} catch (e) {
 				Log.debug(`First Quest: failed to move to next step ${e}`);

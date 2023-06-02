@@ -1,7 +1,7 @@
 {
     "name": "first-quest-bot",
-    "version": "1.0.0",
-    "description": "First Quest and CAPTCHA verification for Bankless DAO.",
+    "version": "2.0.0",
+    "description": "New member onboarding for Bankless DAO.",
     "main": "app.js",
     "private": true,
     "scripts": {
@@ -40,11 +40,12 @@
         "@sentry/tracing": "^6.16.1",
         "@types/node": "^16.7.1",
         "axios": "^0.21.4",
+        "canvas": "^2.9.1",
         "cron": "^1.8.2",
         "dayjs": "^1.10.7",
         "dd-trace": "^1.5.1",
         "discord.js": "^13.1.0",
-        "discord.js-captcha": "^2.2.2",
+        "discord.js-captcha": "^2.5.3",
         "dotenv": "^10.0.0",
         "form-data": "^4.0.0",
         "lodash.clonedeep": "^4.5.0",
@@ -52,6 +53,7 @@
         "mongodb": "^3.6.9",
         "p-queue": "^6.6.2",
         "slash-create": "^4.3.0",
+        "typescript": "4.4.3",
         "uuid": "^8.3.2"
     },
     "devDependencies": {
@@ -71,7 +73,7 @@
     },
     "engines": {
         "yarn": "1.x",
-        "node": "16.x"
+        "node": "16.10.0"
     },
     "engineStrict": true
 }

@@ -1,68 +1,46 @@
 import channelIds from '../../service/constants/channelIds';
-import client from '../../app';
-import { GuildMember, Message, MessageEmbed, TextChannel } from 'discord.js';
-import { Captcha } from 'discord.js-captcha';
+import {
+	GuildMember,
+	Message,
+	// MessageEmbed,
+	TextChannel,
+} from 'discord.js';
 import Log from '../../utils/Log';
 import { addNewUserToDb, sendFqMessage } from '../../service/first-quest/LaunchFirstQuest';
-import roleIds from '../../service/constants/roleIds';
+// import roleIds from '../../service/constants/roleIds';
 
 const StartFirstQuestFlow = async (guildMember: GuildMember): Promise<void> => {
 	Log.debug(`starting first quest flow for new user ${guildMember.user.tag}`);
 
-	const captchaOptions = getCaptchaOptions(guildMember, false);
-
-	const captcha = new Captcha(client, captchaOptions);
+	const captcha = null;
 
 	runSuccessAndTimeout(guildMember, captcha, false);
-	captcha.present(guildMember);
-	Log.debug(`captcha sent to ${guildMember.user.tag}`);
-
-	captcha.on('failure', () => {
-		const captcha2 = new Captcha(client, captchaOptions);
-		runSuccessAndTimeout(guildMember, captcha, false);
-		setTimeout(() => {
-			captcha2.present(guildMember);
-		}, 2000);
-		Log.debug(`captcha sent to ${guildMember.user.tag}`);
-
-		captcha2.on('failure', () => {
-			const captchaOptions3 = getCaptchaOptions(guildMember, true);
-			const captcha3 = new Captcha(client, captchaOptions3);
-			Log.debug(`captcha sent to ${guildMember.user.tag}`);
-
-			runSuccessAndTimeout(guildMember, captcha, true);
-			setTimeout(() => {
-				captcha3.present(guildMember);
-			}, 3000);
-		});
-	});
 };
 
-const runSuccessAndTimeout = (guildMember: GuildMember, captcha: any, isKickOnFailureSet: boolean) => {
-	captcha.on('success', async () => {
-		Log.debug(`captcha success for ${guildMember.user.tag}`);
-		await addNewUserToDb(guildMember);
-		await sendFqMessage('undefined', guildMember);
-		const verificationChannel: TextChannel = await guildMember.guild.channels.fetch(channelIds.captchaVerification) as TextChannel;
-		const message: Message = await verificationChannel.send({
-			embeds: [{
-				title: 'First Quest Start',
-				description: 'Please enable DMs to begin your first quest. In case DMs are off, first quest can begin with the slash command `/first-quest start`',
-			}],
-		});
-		setTimeout(async () => {
-			await message.delete().catch(Log.error);
-		}, 5000);
+const runSuccessAndTimeout = async (guildMember: GuildMember, captcha: any, isKickOnFailureSet: boolean) => {
+	Log.debug(`sending FQ message for ${guildMember.user.tag} in channel ${channelIds.captchaVerification}`);
+	await addNewUserToDb(guildMember);
+	await sendFqMessage('undefined', guildMember);
+	const verificationChannel: TextChannel = await guildMember.guild.channels.fetch(channelIds.captchaVerification) as TextChannel;
+	const message: Message = await verificationChannel.send({
+		embeds: [{
+			title: 'First Quest Start',
+			description: 'Please enable DMs to begin your first quest. In case DMs are off, first quest can begin with the slash command `/first-quest start`',
+		}],
 	});
+	setTimeout(async () => {
+		await message.delete().catch(Log.error);
+	}, 5000);
 
 	if (!isKickOnFailureSet) {
 		captcha.on('timeout', async () => {
 			Log.debug(`captcha timeout for ${guildMember.user.tag}`);
-			await guildMember.kick('captcha timeout').catch(Log.error);
+			// await guildMember.kick('captcha timeout').catch(Log.error);
 		});
 	}
 };
 
+/*
 const getCaptchaOptions = (guildMember: GuildMember, kickOnFailure: boolean) => {
 	return {
 		guildID: guildMember.guild.id,
@@ -81,5 +59,6 @@ const getCaptchaOptions = (guildMember: GuildMember, kickOnFailure: boolean) => 
 		}),
 	};
 };
+*/
 
 export default StartFirstQuestFlow;

@@ -8,7 +8,6 @@ import ServiceUtils from '../../utils/ServiceUtils';
 import ConfigureFirstQuest from '../../service/first-quest/ConfigureFirstQuest';
 import ValidationError from '../../errors/ValidationError';
 import discordServerIds from '../../service/constants/discordServerIds';
-import FirstQuestPOAP from '../../service/first-quest/FirstQuestPOAP';
 import { addNewUserToDb, sendFqMessage } from '../../service/first-quest/LaunchFirstQuest';
 import Log, { LogUtils } from '../../utils/Log';
 
@@ -67,9 +66,9 @@ export default class FirstQuest extends SlashCommand {
 	async run(ctx: CommandContext): Promise<any> {
 		LogUtils.logCommandStart(ctx);
 		if (ctx.user.bot) return;
-		const { guildMember } = await ServiceUtils.getGuildAndMember(ctx);
 		let command: Promise<any>;
 		try {
+			const { guildMember } = await ServiceUtils.getGuildAndMember(ctx);
 			switch (ctx.subcommands[0]) {
 			case 'start':
 				await ctx?.send(`Hi, ${ctx.user.mention}! First Quest was launched, please make sure DMs are active.`);
@@ -81,9 +80,6 @@ export default class FirstQuest extends SlashCommand {
 				break;
 			case 'config':
 				command = ConfigureFirstQuest(guildMember, ctx);
-				break;
-			case 'poap-refill':
-				command = FirstQuestPOAP(guildMember, ctx);
 				break;
 			default:
 				return ctx.send(`${ctx.user.mention} Please try again.`);

@@ -4,7 +4,7 @@
         "target": "es6",
         "lib": ["es2020"],
         "sourceMap": true,
-        "outDir": "./dist/",
+        "outDir": "./dist/app",
         "allowJs": true,
         "allowSyntheticDefaultImports": true,
         "esModuleInterop": true,
